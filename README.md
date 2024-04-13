@@ -29,7 +29,7 @@ y Sleep no es algo en lo que se deba confiar en Windows
 
 * abre dwmbsc32.exe, este a su vez abrira el otro ejecutable (dwmbsc64.exe) como un proceso hijo, cuando presiones el hootkey automaticamente se cerrara junto a su proceso padre
 
-## DISFRUTAR
+* **DISFRUTAR**
 
 ## DERECHOS DE AUTOR Y LICENCIA
 [LICENCIA](LICENSE)
