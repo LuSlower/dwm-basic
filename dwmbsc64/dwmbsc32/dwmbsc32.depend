@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1712964783 source:e:\documentos\codeblocks\dwmbsc\dwmbsc32\dwmbsc32.cpp
+	<Windows.h>
+
+1712989938 source:e:\documentos\codeblocks\dwmbsc64\dwmbsc32\dwmbsc32.cpp
+	<Windows.h>
+	<dwmapi.h>
+
