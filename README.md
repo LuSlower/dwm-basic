@@ -20,7 +20,7 @@ y Sleep no es algo en lo que se deba confiar en Windows
 
 ## en que se diferencia de basicthemer5?
 
-* 13MB de aproximadamente de total bytes (basicthemer5) frente a 2.5MB (entre los dos ejecutables de dwmbsc)
+* 13MB aproximadamente de total bytes (basicthemer5) frente a 2.5MB (entre los dos ejecutables de dwmbsc)
 * no hay sondeo de funciones, solo hay un while en cada proceso para evitar que el ShellProc bloquee su sistema
 * cada ejecutable depende de cada uno de los DLLs para que pueda inyectar correctamente el HOOKPROC a cada proceso dependiendo del contexto de su arquitectura
 * añadi un hootkey a dwmbsc32.exe (CTRL + SHIFT + F1) esto restaurara las politicas aplicadas a cada atributo de dwm
