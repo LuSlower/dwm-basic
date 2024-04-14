@@ -3,12 +3,14 @@ el basic themer más ligero y completo
 
 ![image](https://github.com/LuSlower/dwmbsc/assets/148411728/61e9273f-1c22-4144-a905-4a301310bc2f)
 
+en lugar de sondear a GetForegroundWindow() como la mayoria, pensé en un SHELL HOOK ya que no tendría que sondear esa función cada Sleep(_n_) hasta que detecte una ventana en primer plano, incluso definiendo un hWndPrev
+
 tal vez te preguntes por que hay dos ejecutables?
 
 bien, esto tiene una explicación
-es algo simple, en lugar de sondear GetForegroundWindow() como la mayoria, pensé en un SHELL HOOK ya que no tendría que sondear esa función cada Sleep(_n_) hasta que detecte una ventana en primer plano, incluso definiendo un hWndPrev
+para poder inyectar correctamente el ShellProc, este requiere de dos ejecutables que llamen a los enlaces para las arquitecturas (32 y 64 bits) de diferentes programas
 
-para poder inyectar correctamente el ShellProc y MSDN dice:
+MSDN dice:
 
 > SetWindowsHookEx se puede utilizar para inyectar una DLL en otro proceso. No se puede inyectar una DLL de 32 bits en un proceso de 64 bits y no se puede inyectar una DLL de 64 bits en un proceso de 32 bits. Si una aplicación requiere el uso de enlaces en otros procesos, se requiere que una aplicación de 32 bits llame a SetWindowsHookEx para inyectar una DLL de 32 bits en procesos de 32 bits, y una aplicación de 64 bits llame a SetWindowsHookEx para inyectar una DLL de 64 bits. DLL en procesos de 64 bits. Las DLL de 32 y 64 bits deben tener nombres diferentes.
 
