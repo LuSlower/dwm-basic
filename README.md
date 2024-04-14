@@ -1,5 +1,5 @@
 # dwmbsc
-el basic themer más ligero y tal vez menos seguro que lo demás
+el basic themer más ligero y completo
 
 ![image](https://github.com/LuSlower/dwmbsc/assets/148411728/61e9273f-1c22-4144-a905-4a301310bc2f)
 
