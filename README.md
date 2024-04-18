@@ -27,6 +27,11 @@ y Sleep no es algo en lo que se deba confiar en Windows
 * cada ejecutable depende de cada uno de los DLLs para que pueda inyectar correctamente el HOOKPROC a cada proceso dependiendo del contexto de su arquitectura
 * añadi un hootkey a dwmbsc32.exe (CTRL + SHIFT + F1) esto restaurara las politicas aplicadas a cada atributo de dwm
 
+## INFO
+
+* el SysMenu de Explorer, Chrome / Edge, puede usar este [tema](https://chromewebstore.google.com/detail/windows-vista-basic-theme/bkohfcingfpclphbaglfbbjbfajcepad) 
+para activar el tema heredado en Chrome / Edge, necesita inicializar el programa con **-disable-windows10-custom-titleba** para eso mejor cree un acceso directo
+
 ## COMO USAR?
 
 * abre dwmbsc32.exe, este a su vez abrira el otro ejecutable (dwmbsc64.exe) como un proceso hijo, cuando presiones el hootkey automaticamente se cerrara junto a su proceso padre
