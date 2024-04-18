@@ -1,4 +1,0 @@
-EXPORTS
-    DllMain @1
-    RemoveHook @2
-    SetHook @3
