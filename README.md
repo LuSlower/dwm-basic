@@ -29,7 +29,7 @@ y Sleep no es algo en lo que se deba confiar en Windows
 
 ## INFO
 
-* si no desea usar el SysMenu de Explorer, Chrome / Edge, puede usar este [tema](https://chromewebstore.google.com/detail/windows-vista-basic-theme/bkohfcingfpclphbaglfbbjbfajcepad) 
+* si no desea usar el SysMenu de Chrome / Edge, puede usar este [tema](https://chromewebstore.google.com/detail/windows-vista-basic-theme/bkohfcingfpclphbaglfbbjbfajcepad) 
 para activar el tema heredado en Chrome / Edge, necesita inicializar el programa con **-disable-windows10-custom-titleba** para eso mejor cree un acceso directo
 
 ## COMO USAR?
