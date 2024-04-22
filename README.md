@@ -5,20 +5,10 @@ el basic themer más ligero y completo
 
 en lugar de sondear a GetForegroundWindow() como la mayoria, pensé en un SHELL HOOK ya que no tendría que sondear esa función cada Sleep(_n_) hasta que detecte una ventana en primer plano, incluso definiendo un hWndPrev
 
-tal vez te preguntes por que hay dos ejecutables?
-
-bien, esto tiene una explicación
-para poder inyectar correctamente el ShellProc, este requiere de dos ejecutables que llamen a los enlaces para las arquitecturas (32 y 64 bits) de diferentes programas
-
-MSDN dice:
-
-> SetWindowsHookEx se puede utilizar para inyectar una DLL en otro proceso. No se puede inyectar una DLL de 32 bits en un proceso de 64 bits y no se puede inyectar una DLL de 64 bits en un proceso de 32 bits. Si una aplicación requiere el uso de enlaces en otros procesos, se requiere que una aplicación de 32 bits llame a SetWindowsHookEx para inyectar una DLL de 32 bits en procesos de 32 bits, y una aplicación de 64 bits llame a SetWindowsHookEx para inyectar una DLL de 64 bits. DLL en procesos de 64 bits. Las DLL de 32 y 64 bits deben tener nombres diferentes.
-
-
-y bueno esto generaria un descanso a la CPU, ya que evitaria sondear constantemente a esta función
-y Sleep no es algo en lo que se deba confiar en Windows
-
+tal vez te preguntes por que hay dos ejecutables y dos DLLs?
 > Debido a que los ganchos se ejecutan en el contexto de una aplicación, deben coincidir con el "bitness" de la aplicación. Si una aplicación de 32 bits instala un enlace global en Windows de 64 bits, el enlace de 32 bits se inyecta en cada proceso de 32 bits (se aplican los límites de seguridad habituales). En un proceso de 64 bits, los subprocesos todavía están marcados como "enganchados". Sin embargo, debido a que una aplicación de 32 bits debe ejecutar el código de enlace, el sistema ejecuta el enlace en el contexto de la aplicación de enlace; específicamente, en el hilo que llamó SetWindowsHookEx . Esto significa que la aplicación de enlace debe continuar enviando mensajes o podría bloquear el funcionamiento normal de los procesos de 64 bits.
+
+para poder inyectar correctamente el ShellProc, este requiere de dos ejecutables que llamen a los enlaces para las arquitecturas (32 y 64 bits) de diferentes programas, esto generaria un descanso a la CPU ya que evitaria sondear constantemente a esta función y Sleep no es algo en lo que se deba confiar en Windows
 
 ## en que se diferencia de basicthemer5?
 
@@ -30,13 +20,11 @@ y Sleep no es algo en lo que se deba confiar en Windows
 ## INFO
 
 * si no desea usar el SysMenu de Chrome / Edge, puede usar este [tema](https://chromewebstore.google.com/detail/windows-vista-basic-theme/bkohfcingfpclphbaglfbbjbfajcepad) 
-para activar el tema heredado en Chrome / Edge, necesita inicializar el programa con **-disable-windows10-custom-titleba** para eso mejor cree un acceso directo
+para activar el tema heredado en Chrome / Edge, necesita inicializar el programa con **-disable-windows10-custom-titlebar** para eso mejor cree un acceso directo
 
 ## COMO USAR?
 
 * abre dwmbsc32.exe, este a su vez abrira el otro ejecutable (dwmbsc64.exe) como un proceso hijo, cuando presiones el hootkey automaticamente se cerrara junto a su proceso padre
-
-* **DISFRUTAR**
 
 ## DERECHOS DE AUTOR Y LICENCIA
 [LICENCIA](LICENSE)
