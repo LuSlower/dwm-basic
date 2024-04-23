@@ -24,7 +24,7 @@ para poder inyectar correctamente el ShellProc, este requiere de dos ejecutables
 * Alternativamente puede usar [dwm-bs](dwm-bs\dwm-bs.cpp), que es una versión casi parecida a BasicThemer5
 esta versión es mucho más portable que usar dwmbsc32 pero a cambio de un sondeo pequeño, relativamente sigue funcionando mejor que BasicThemer5 y consume mucho menos recursos
 
-* sondea de un WinEventHook que detecta la creación de un objeto, si este es una ventana y es diferente de la previa (HWNDPrev), aplicará la política
+* Sondea un WinEventHook que detecta la creación de un objeto, si este es una ventana y es diferente de la previa (HWNDPrev), aplicará la política
 
 ![image](https://github.com/LuSlower/dwmbsc/assets/148411728/34af9b3d-1343-4a19-8e10-915c939f2c87)
 
