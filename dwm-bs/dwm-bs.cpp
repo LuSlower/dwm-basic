@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h>
 #include <windows.h>
 #include <dwmapi.h>
@@ -31,7 +32,7 @@ BOOL CALLBACK PolWinProc(HWND hwnd, LPARAM lParam) {
 
     // Compara el nombre de clase con el de la ventana de Explorer
     if (wcscmp(className, L"CabinetWClass") == 0) { // Usar wcscmp para comparar cadenas amplias
-        _PoL(hwnd, "Enable"); // Habilitar la política
+        _PoL(hwnd, "Enable"); // Habilitar la polÃ­tica
     }
     return TRUE;
 }
@@ -41,8 +42,8 @@ BOOL CALLBACK dPolWinProc(HWND hwnd, LPARAM lParam) {
     return TRUE;
 }
 
-HWND HWNDPrev = NULL; // Declaración de HWNDPrev antes de WinEventProc
-WCHAR className[256]; // Declarar tamaño de clase
+HWND HWNDPrev = NULL; // DeclaraciÃ³n de HWNDPrev antes de WinEventProc
+WCHAR className[256]; // Declarar tamaÃ±o de clase
 
 void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime)
 {
@@ -57,7 +58,7 @@ void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, 
             }
         }
 
-        // Deshabilitar la política en la ventana anterior
+        // Deshabilitar la polÃ­tica en la ventana anterior
             _PoL(hwnd, "Disable");
 
         // Actualizar HWNDPrev con el valor de la ventana actual
