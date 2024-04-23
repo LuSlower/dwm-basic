@@ -13,11 +13,16 @@ para poder inyectar correctamente el ShellProc, este requiere de dos ejecutables
 ## en que se diferencia de basicthemer5?
 
 * 13MB aproximadamente de total bytes (basicthemer5) frente a 2.5MB (entre los dos ejecutables de dwmbsc)
-* no hay sondeo de funciones, solo hay un while en cada proceso para evitar que el ShellProc bloquee su sistema
+* no hay sondeo de funciones ni eventos de windows, solo hay un while en cada proceso para evitar que el ShellProc bloquee su sistema
 * cada ejecutable depende de cada uno de los DLLs para que pueda inyectar correctamente el HOOKPROC a cada proceso dependiendo del contexto de su arquitectura
 * añadi un hootkey a dwmbsc32.exe (CTRL + SHIFT + F1) esto restaurara las politicas aplicadas a cada atributo de dwm
 
 ## INFO
+
+* Alternativamente puede usar dwm-bs, que es una versión casi parecida a BasicThemer5, esta versión es mucho más ligero que usar dwmbsc32 pero a cambio de un sondeo pequeño, relativamente sigue funcionando mejor que BasicThemer5 y consume mucho menos
+
+![image](https://github.com/LuSlower/dwmbsc/assets/148411728/34af9b3d-1343-4a19-8e10-915c939f2c87)
+
 
 * si no desea usar el SysMenu de Chrome / Edge, puede usar este [tema](https://chromewebstore.google.com/detail/windows-vista-basic-theme/bkohfcingfpclphbaglfbbjbfajcepad) 
 para activar el tema heredado en Chrome / Edge, necesita inicializar el programa con **-disable-windows10-custom-titlebar** para eso mejor cree un acceso directo
