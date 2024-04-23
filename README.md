@@ -21,7 +21,9 @@ para poder inyectar correctamente el ShellProc, este requiere de dos ejecutables
 
 ## INFO
 
-* Alternativamente puede usar dwm-bs, que es una versión casi parecida a BasicThemer5, esta versión es mucho más ligero que usar dwmbsc32 pero a cambio de un sondeo pequeño, relativamente sigue funcionando mejor que BasicThemer5 y consume mucho menos
+* Alternativamente puede usar dwm-bs, que es una versión casi parecida a BasicThemer5
+esta versión es mucho más ligero que usar dwmbsc32 pero a cambio de un sondeo pequeño, relativamente sigue funcionando mejor que BasicThemer5 y consume mucho menos
+sondea un Hook de un WinEvent que detecta la creación de un objeto, si este es una ventana que es diferente de la previa (HWNDPrev), aplicará el tema básico a esa ventana, excepto a explorer 
 
 ![image](https://github.com/LuSlower/dwmbsc/assets/148411728/34af9b3d-1343-4a19-8e10-915c939f2c87)
 
