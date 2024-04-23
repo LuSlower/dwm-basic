@@ -5,12 +5,12 @@ el basic themer más ligero y completo
 
 ![image](https://github.com/LuSlower/dwmbsc/assets/148411728/61e9273f-1c22-4144-a905-4a301310bc2f)
 
-en lugar de sondear a GetForegroundWindow() como la mayoria, pensé en un SHELL HOOK ya que no tendría que sondear esa función cada Sleep(_n_) hasta que detecte una ventana en primer plano, incluso definiendo un hWndPrev
+en lugar de sondear a GetForegroundWindow() como los basic themers más antiguos, pensé que lo mejor sería un ShellHook ya que no tendría que sondear esa función cada Sleep(_n_) hasta que detecte una ventana en primer plano, incluso definiendo un HWNDPrev
 
 tal vez te preguntes por que hay dos ejecutables y dos DLLs?
 > Debido a que los ganchos se ejecutan en el contexto de una aplicación, deben coincidir con el "bitness" de la aplicación. Si una aplicación de 32 bits instala un enlace global en Windows de 64 bits, el enlace de 32 bits se inyecta en cada proceso de 32 bits (se aplican los límites de seguridad habituales). En un proceso de 64 bits, los subprocesos todavía están marcados como "enganchados". Sin embargo, debido a que una aplicación de 32 bits debe ejecutar el código de enlace, el sistema ejecuta el enlace en el contexto de la aplicación de enlace; específicamente, en el hilo que llamó SetWindowsHookEx . Esto significa que la aplicación de enlace debe continuar enviando mensajes o podría bloquear el funcionamiento normal de los procesos de 64 bits.
 
-para poder inyectar correctamente el ShellProc, este requiere de dos ejecutables que llamen a los enlaces para las arquitecturas (32 y 64 bits) de diferentes programas, esto generaria un descanso a la CPU ya que evitaria sondear constantemente a esta función y Sleep no es algo en lo que se deba confiar en Windows
+para poder inyectar correctamente el ShellProc, este requiere de dos ejecutables que llamen a los enlaces para las arquitecturas (32 y 64 bits) de diferentes programas, esto generaria un descanso a la CPU ya que solo intercepta la creación de nuevas ventanas (primer plano), obtiene el HWND y aplica la política...
 
 ## en que se diferencia de basicthemer5?
 
@@ -21,9 +21,9 @@ para poder inyectar correctamente el ShellProc, este requiere de dos ejecutables
 
 ## INFO
 
-* Alternativamente puede usar dwm-bs, que es una versión casi parecida a BasicThemer5
-esta versión es mucho más ligero que usar dwmbsc32 pero a cambio de un sondeo pequeño, relativamente sigue funcionando mejor que BasicThemer5 y consume mucho menos
-sondea un Hook de un WinEvent que detecta la creación de un objeto, si este es una ventana que es diferente de la previa (HWNDPrev), aplicará el tema básico a esa ventana, excepto a explorer 
+* Alternativamente puede usar [dwm-bs](dwm-bs\dwm-bs.cpp), que es una versión casi parecida a BasicThemer5
+esta versión es mucho más portable que usar dwmbsc32 pero a cambio de un sondeo pequeño, relativamente sigue funcionando mejor que BasicThemer5 y consume mucho menos recursos
+sondea de un WinEventHook que detecta la creación de un objeto, si este es una ventana y es diferente de la previa (HWNDPrev), aplicará la política
 
 ![image](https://github.com/LuSlower/dwmbsc/assets/148411728/34af9b3d-1343-4a19-8e10-915c939f2c87)
 
