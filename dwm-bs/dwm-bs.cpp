@@ -75,13 +75,12 @@ void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, 
 int main()
 {
 
-    HANDLE hMutex = CreateMutex(NULL, TRUE, "dwmbsc32");
+    HANDLE hMutex = CreateMutex(NULL, TRUE, "dwm-bs");
     if (GetLastError() == ERROR_ALREADY_EXISTS)
     {
         //Ya hay una instancia
         CloseHandle(hMutex);
-        MessageBox(0, "Ya hay una instancia de dwm-bs ejecutandose", "Error", MB_ICONERROR | MB_OK);
-        ExitProcess(NULL);
+        return 0;
     }
 
     FreeConsole();
