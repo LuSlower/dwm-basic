@@ -1,4 +1,6 @@
 # dwmbsc
+[![Total Downloads](https://img.shields.io/github/downloads/LuSlower/dwmbsc/total.svg)](https://github.com/LuSlower/dwmbsc/releases) [![PayPal Badge](https://img.shields.io/badge/PayPal-003087?logo=paypal&logoColor=fff&style=flat)](https://paypal.me/eldontweaks) 
+
 el basic themer más ligero y completo
 
 ![image](https://github.com/LuSlower/dwmbsc/assets/148411728/61e9273f-1c22-4144-a905-4a301310bc2f)
