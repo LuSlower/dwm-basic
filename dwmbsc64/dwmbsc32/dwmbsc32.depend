@@ -2,7 +2,11 @@
 1712964783 source:e:\documentos\codeblocks\dwmbsc\dwmbsc32\dwmbsc32.cpp
 	<Windows.h>
 
-1713481088 source:e:\documentos\codeblocks\dwmbsc64\dwmbsc32\dwmbsc32.cpp
+1713594711 source:e:\documentos\codeblocks\dwmbsc64\dwmbsc32\dwmbsc32.cpp
 	<Windows.h>
+	<shellapi.h>
 	<dwmapi.h>
+
+1713586848 source:e:\documentos\codeblocks\dwmbsc64\dwmbsc32\resource.rc
+	<windows.h>
 

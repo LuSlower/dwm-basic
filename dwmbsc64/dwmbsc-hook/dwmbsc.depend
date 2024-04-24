@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1713895790 source:e:\documentos\codeblocks\dwmbsc64\dwmbsc-hook\main.cpp
+	<dwmapi.h>
+	"main.h"
+
+1712968834 e:\documentos\codeblocks\dwmbsc64\dwmbsc-hook\main.h
+	<windows.h>
+
+1713586678 source:e:\documentos\codeblocks\dwmbsc64\dwmbsc-hook\resource.rc
+	<windows.h>
+

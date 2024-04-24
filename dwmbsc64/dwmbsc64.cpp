@@ -11,7 +11,7 @@ int main() {
     FreeConsole();
 
     // Cargar la DLL
-    HINSTANCE hDll = LoadLibrary("hook64.dll");
+    HINSTANCE hDll = LoadLibrary("dwmbsc64.dll");
     if (hDll == NULL) {
         MessageBox(NULL, "Failed to load DLL 64", "Error", MB_OK | MB_ICONERROR);
         return 1;
