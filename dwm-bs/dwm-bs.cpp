@@ -50,7 +50,7 @@ BOOL CALLBACK dPolWinProc(HWND hwnd, LPARAM lParam) {
 
 void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime)
 {
-    if (event == EVENT_OBJECT_CREATE && event == EVENT_SYSTEM_FOREGROUND && hwnd != HWNDPrev && hwnd != NULL)
+    if (event == EVENT_OBJECT_CREATE && hwnd != HWNDPrev && hwnd != NULL)
     {
         if (GetClassNameW(hwnd, className, sizeof(className)/sizeof(className[0])) > 0)
         {
