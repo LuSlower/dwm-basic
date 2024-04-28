@@ -26,9 +26,6 @@ esta versión es mucho más portable que usar dwmbsc32 pero a cambio de un sonde
 
 * Sondea un WinEventHook que detecta la creación de un objeto, si este es una ventana y es diferente de la previa (HWNDPrev) aplicará la política
 
-![image](https://github.com/LuSlower/dwmbsc/assets/148411728/34af9b3d-1343-4a19-8e10-915c939f2c87)
-
-
 * si no desea usar el SysMenu de Chrome / Edge, puede usar este [tema](https://chromewebstore.google.com/detail/windows-vista-basic-theme/bkohfcingfpclphbaglfbbjbfajcepad) 
 para activar el tema heredado en Chrome / Edge, necesita inicializar el programa con **-disable-windows10-custom-titlebar** para eso mejor cree un acceso directo
 
