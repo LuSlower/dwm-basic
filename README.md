@@ -24,10 +24,12 @@ para poder inyectar correctamente el ShellProc, este requiere de dos ejecutables
 * Alternativamente puede usar [dwm-bs](dwm-bs\dwm-bs.cpp), que es una versión casi parecida a BasicThemer5
 esta versión es mucho más portable que usar dwmbsc32, relativamente sigue funcionando mejor que BasicThemer5 y consume mucho menos recursos
 
-* Sondea un WinEventHook que detecta el evento EVENT_SYSTEM_FOREGROUND es un evento del sistema de Windows que se produce cuando una ventana cambia y se convierte en la ventana activa o en primer plano, si este es diferente de la previa (HWNDPrev) aplicará la política
+* registra un WinEventHook que detecta el evento EVENT_SYSTEM_FOREGROUND que es un evento del sistema de Windows que se produce cuando una ventana cambia y se convierte en la ventana activa o en primer plano, si este es diferente de la previa (HWNDPrev) aplicará la política
 
 * si no desea usar el SysMenu de Chrome / Edge, puede usar este [tema](https://chromewebstore.google.com/detail/windows-vista-basic-theme/bkohfcingfpclphbaglfbbjbfajcepad) 
 para activar el tema heredado en Chrome / Edge, necesita inicializar el programa con **-disable-windows10-custom-titlebar** para eso mejor cree un acceso directo
+
+* posee la misma hotkey CTRL + SHIFT + F1 para restaurar todo a la normalidad
 
 ## COMO USAR?
 
