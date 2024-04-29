@@ -49,7 +49,7 @@ BOOL CALLBACK dPolWinProc(HWND hwnd, LPARAM lParam) {
 
 void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime)
 {
-    if (event == EVENT_OBJECT_CREATE && hwnd != HWNDPrev && hwnd != NULL)
+    if (event == EVENT_SYSTEM_FOREGROUND && hwnd != HWNDPrev && hwnd != NULL)
     {
         if (GetClassNameW(hwnd, className, sizeof(className)/sizeof(className[0])) > 0)
         {
@@ -86,13 +86,13 @@ int main()
     RegisterHotKey(NULL, HK_ID, MOD_CONTROL | MOD_SHIFT, VK_F1);
 
     // Registrar el evento EVENT_OBJECT_CREATE
-    hHook = SetWinEventHook(EVENT_OBJECT_CREATE, EVENT_OBJECT_CREATE, NULL, WinEventProc, 0, 0, WINEVENT_OUTOFCONTEXT);
-
-    // Drenar algo de WS
-    SetProcessWorkingSetSize(GetCurrentProcess(), (SIZE_T) -1, (SIZE_T) -1);
+    hHook = SetWinEventHook(EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND, NULL, WinEventProc, 0, 0, WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS | WINEVENT_SKIPOWNTHREAD);
 
     // Prioridad de segundo plano
     SetPriorityClass(GetCurrentProcess(), PROCESS_MODE_BACKGROUND_BEGIN);
+
+    // Drenar algo de WS
+    SetProcessWorkingSetSize(GetCurrentProcess(), (SIZE_T) -1, (SIZE_T) -1);
 
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {
@@ -100,9 +100,7 @@ int main()
         {
             case WM_HOTKEY:
                 {
-                    switch(msg.wParam)
-                    {
-                        case HK_ID:
+                    if (msg.wParam == HK_ID)
                         {
                             // Enumerar todas las ventanas existentes y restaurar politicas
                             EnumWindows(dPolWinProc, NULL);
@@ -113,10 +111,8 @@ int main()
                             // remover atajo
                             UnregisterHotKey(NULL, HK_ID);
 
-                    return 0;
+                            return 0;
                         }
-                        break;
-                    } //end switch
                 } //end switch
                 break;
         } //end switch
