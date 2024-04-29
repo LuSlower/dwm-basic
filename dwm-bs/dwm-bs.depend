@@ -1,7 +1,4 @@
 # depslib dependency file v1.0
-1713845595 source:e:\documentos\codeblocks\dwm-bs\main.c
-	<Windows.h>
-	<stdio.h>
 
 1713846116 source:e:\documentos\codeblocks\dwm-bs\dwm-bs.cpp
 	<stdio.h>
