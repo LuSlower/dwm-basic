@@ -1,4 +1,3 @@
-
 #define TRAY_ICON_ID 1
 #define HK_ID 2
 #define TRAY_EXIT 3
