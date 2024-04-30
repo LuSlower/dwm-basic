@@ -1,4 +1,4 @@
-#pragma once
+
 #define TRAY_ICON_ID 1
 #define HK_ID 2
 #define TRAY_EXIT 3
@@ -39,7 +39,7 @@ BOOL CALLBACK PolWinProc(HWND hwnd, LPARAM lParam) {
 
     // Compara el nombre de clase con el de la ventana de Explorer
     if (wcscmp(className, L"CabinetWClass") == 0) { // Usar wcscmp para comparar cadenas amplias
-        _PoL(hwnd, "Enable"); // Habilitar la política
+        _PoL(hwnd, "Enable"); // Habilitar la polÃ­tica
     }
     return TRUE;
 }
@@ -122,15 +122,15 @@ int main() {
     //crear subproceso de dwmbsc64
     if (!CreateProcess(
             "dwmbsc64.exe",  // Ruta al ejecutable
-            NULL,                         // Argumentos de la línea de comandos
+            NULL,                         // Argumentos de la lÃ­nea de comandos
             NULL,                         // Atributos del proceso (predeterminado)
             NULL,                         // Atributos del hilo (predeterminado)
             FALSE,                        // Herencia de manijas (falso para no heredar)
             CREATE_NO_WINDOW,            // Crear sin ventana de consola
             NULL,                         // Medio ambiente del proceso (predeterminado)
             NULL,                         // Directorio base (predeterminado)
-            &si,                          // Información de inicio del proceso
-            &pi)) {                       // Información del proceso resultante
+            &si,                          // InformaciÃ³n de inicio del proceso
+            &pi)) {                       // InformaciÃ³n del proceso resultante
             return 1;
     }
 
