@@ -1,5 +1,3 @@
-#pragma once
-#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 typedef void (*SetHookFunc)();
@@ -29,7 +27,7 @@ int main() {
     // Instalar el gancho
     setHook();
 
-    // Mantener el programa en ejecución
+    // Mantener el programa en ejecuciÃ³n
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {
         TranslateMessage(&msg);
