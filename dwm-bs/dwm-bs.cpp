@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <windows.h>
 #include <dwmapi.h>
 #define HK_ID 1
