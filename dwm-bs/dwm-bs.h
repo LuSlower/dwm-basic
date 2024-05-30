@@ -40,7 +40,7 @@ DWORD GetPID(const char* processName) {
 
 const char* GetExcludeList()
 {
-    static char pBuffer[64];  // Usamos static para que la variable persista fuera del alcance de la función
+    static char pBuffer[64];
     DWORD pSize = sizeof(pBuffer);
 
     // Leer la lista de procesos excluidos
@@ -55,7 +55,6 @@ const char* GetExcludeList()
 
     if (RegQueryValueExA(hKey, "ExclusionList", NULL, &valueType, (LPBYTE)pBuffer, &pSize) != ERROR_SUCCESS){
         const char* initialValue = "explorer.exe\0\0";
-
         RegSetValueExA(hKey, "ExclusionList", 0, REG_MULTI_SZ, (const BYTE*)initialValue, strlen(initialValue));
     }
 
@@ -99,9 +98,9 @@ BOOL IsExcludeHWND(HWND hWnd_ex)
 
     const char* pBuffer = GetExcludeList();
 
-    // Verificar si el proceso de la ventana está en la lista de exclusión
+    // Verificar si el proceso de la ventana estÃ¡ en la lista de exclusiÃ³n
     while (*pBuffer) {
-        DWORD pid_ex = GetPID(pBuffer); // Aquí deberías llamar a tu función GetPID
+        DWORD pid_ex = GetPID(pBuffer);
         if (pid == pid_ex) {
             return TRUE;
         }
@@ -137,7 +136,7 @@ void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, 
                 return;
             }
 
-        // Deshabilitar la política en la ventana anterior
+        // Deshabilitar la polÃ­tica en la ventana anterior
             _PoL(hwnd, "Disable");
             _DisableBlurBehind(hwnd);
 
