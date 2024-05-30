@@ -13,6 +13,7 @@ el basic themer más ligero y completo
 
 * aplica los siguientes atributos:
 > DWMWA_NCRENDERING_POLICY
+
 > DWMWA_TRANSITIONS_FORCEDISABLED
 
 tambien deshabilita DWM Blur Behind...
