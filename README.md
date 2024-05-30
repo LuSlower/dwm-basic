@@ -1,4 +1,4 @@
-# dwmbsc
+# dwm-basic
 [![Total Downloads](https://img.shields.io/github/downloads/LuSlower/dwmbsc/total.svg)](https://github.com/LuSlower/dwmbsc/releases) [![PayPal Badge](https://img.shields.io/badge/PayPal-003087?logo=paypal&logoColor=fff&style=flat)](https://paypal.me/eldontweaks) 
 
 el basic themer más ligero y completo
