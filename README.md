@@ -7,7 +7,7 @@ el basic themer más ligero y completo
 
 ## INFO
 
-* si desea establecer exclusiones, por defecto se creará un REG_MULTI_SZ en `HKCU\Software\dwm-bs` llamado `ExclusionList`, allí deben específicar que procesos no quieren que se vean afectados por la desactivación de atributos
+* si desea establecer exclusiones, por defecto se creará un REG_MULTI_SZ en `HKCU\Software\dwm-bs` llamado `ExclusionList`, allí deben específicar que procesos no desea que se vean afectados por la desactivación de atributos
 
 * registra un WinEventHook que detecta el evento EVENT_SYSTEM_FOREGROUND que se produce cuando una ventana cambia y se convierte en la ventana activa o en primer plano, si este es diferente de la previa (HWNDPrev) y no esta en la lista de exclusión aplicará la política
 
