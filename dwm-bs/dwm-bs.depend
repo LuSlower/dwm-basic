@@ -1,7 +1,12 @@
 # depslib dependency file v1.0
+1717050267 source:e:\documentos\codeblocks\dwm-bs\dwm-bs.cpp
+	"dwm-bs.h"
 
-1713846116 source:e:\documentos\codeblocks\dwm-bs\dwm-bs.cpp
-	<stdio.h>
+1713848894 source:e:\documentos\codeblocks\dwm-bs\dwm-bs.rc
+	<windows.h>
+
+1717050270 e:\documentos\codeblocks\dwm-bs\dwm-bs.h
 	<windows.h>
 	<dwmapi.h>
+	<stdio.h>
 

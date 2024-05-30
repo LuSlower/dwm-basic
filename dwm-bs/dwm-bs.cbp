@@ -7,23 +7,20 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Release">
+				<Option platforms="Windows;" />
 				<Option output="bin/Release/dwm-bs" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-O2" />
-				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
 			</Target>
 		</Build>
-		<Compiler>
-			<Add option="-Wall" />
-		</Compiler>
-		<Unit filename="main.c">
-			<Option compilerVar="CC" />
+		<Linker>
+			<Add library="dwmapi" />
+		</Linker>
+		<Unit filename="dwm-bs.cpp" />
+		<Unit filename="dwm-bs.h" />
+		<Unit filename="dwm-bs.rc">
+			<Option compilerVar="WINDRES" />
 		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
