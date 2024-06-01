@@ -8,16 +8,16 @@ int main()
     // Enumerar todas las ventanas existentes y aplicar politicas
     EnumWindows(PolWinProc, NULL);
 
-    // Registrar HotKey
+    //registrar HotKey
     RegisterHotKey(NULL, HK_ID, MOD_CONTROL | MOD_SHIFT, VK_F1);
 
-    // Registrar el evento EVENT_SYSTEM_FOREGROUND
+    // Registrar el EVENT_SYSTEM_FOREGROUND
     hHook = SetWinEventHook(EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND, NULL, WinEventProc, 0, 0, WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS | WINEVENT_SKIPOWNTHREAD);
 
     // Prioridad de segundo plano
     SetPriorityClass(GetCurrentProcess(), PROCESS_MODE_BACKGROUND_BEGIN);
 
-    // Drenar algo de working set
+    // Drenar algo de working_set
     SetProcessWorkingSetSize(GetCurrentProcess(), (SIZE_T) -1, (SIZE_T) -1);
 
     MSG msg;
