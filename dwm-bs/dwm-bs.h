@@ -6,9 +6,8 @@
 #define HK_ID 1
 
 HWND HWNDPrev = NULL;
-WCHAR className[32];
 HWINEVENTHOOK hHook;
-BOOL lpol, tpol;
+BOOL tPol, tPeek, isEnabled;
 
 
 DWORD GetPID(const char* processName) {
@@ -40,7 +39,7 @@ DWORD GetPID(const char* processName) {
 
 const char* GetExcludeList()
 {
-    static char pBuffer[64];
+    static char pBuffer[64];  // Usamos static para que la variable persista fuera del alcance de la función
     DWORD pSize = sizeof(pBuffer);
 
     // Leer la lista de procesos excluidos
@@ -55,6 +54,7 @@ const char* GetExcludeList()
 
     if (RegQueryValueExA(hKey, "ExclusionList", NULL, &valueType, (LPBYTE)pBuffer, &pSize) != ERROR_SUCCESS){
         const char* initialValue = "explorer.exe\0\0";
+
         RegSetValueExA(hKey, "ExclusionList", 0, REG_MULTI_SZ, (const BYTE*)initialValue, strlen(initialValue));
     }
 
@@ -64,35 +64,47 @@ const char* GetExcludeList()
     return pBuffer;
 }
 
-void _PoL(HWND hwnd, const char* Option)
+void _NCRP(HWND hwnd, const char* Option)
 {
-        //politica de renderizado y transisiones
+        //politica de renderizado
     if (strcmp(Option, "Enable") == 0) {
         DWMNCRENDERINGPOLICY rNCRP = DWMNCRP_ENABLED;
-        tpol = FALSE;
         DwmSetWindowAttribute(hwnd, DWMWA_NCRENDERING_POLICY, &rNCRP, sizeof(rNCRP));
-        DwmSetWindowAttribute(hwnd, DWMWA_TRANSITIONS_FORCEDISABLED, &tpol, sizeof(tpol));
+
     } else if (strcmp(Option, "Disable") == 0) {
         DWMNCRENDERINGPOLICY NCRP = DWMNCRP_DISABLED;
-        lpol = TRUE;
         DwmSetWindowAttribute(hwnd, DWMWA_NCRENDERING_POLICY, &NCRP, sizeof(NCRP));
-        DwmSetWindowAttribute(hwnd, DWMWA_TRANSITIONS_FORCEDISABLED, &lpol, sizeof(lpol));
     }
 }
 
-void _DisableBlurBehind(HWND hWnd)
+void _ATTRIBS_OFF(HWND hwnd)
 {
-        //politica de transparencia
-        DWM_BLURBEHIND bb = {0};
-        bb.dwFlags = DWM_BB_ENABLE;
-        bb.fEnable = FALSE;
-        bb.hRgnBlur = NULL;
+        //politica de transisiones, icon_peek,
+        tPol = TRUE;
+        tPeek = FALSE;
+        DwmSetWindowAttribute(hwnd, DWMWA_TRANSITIONS_FORCEDISABLED, &tPol, sizeof(tPol));
+        DwmSetWindowAttribute(hwnd, DWMWA_DISALLOW_PEEK, &tPeek, sizeof(tPeek));
+        DwmSetWindowAttribute(hwnd, DWMWA_FORCE_ICONIC_REPRESENTATION, &tPol, sizeof(tPol));
+}
 
-        DwmEnableBlurBehindWindow(hWnd, &bb);
+void _ATTRIBS_ON(HWND hwnd)
+{
+        tPol = FALSE;
+        tPeek = TRUE;
+        DwmSetWindowAttribute(hwnd, DWMWA_TRANSITIONS_FORCEDISABLED, &tPol, sizeof(tPol));
+        DwmSetWindowAttribute(hwnd, DWMWA_DISALLOW_PEEK, &tPeek, sizeof(tPeek));
+        DwmSetWindowAttribute(hwnd, DWMWA_FORCE_ICONIC_REPRESENTATION, &tPol, sizeof(tPol));
 }
 
 BOOL IsExcludeHWND(HWND hWnd_ex)
 {
+
+    // Verificar si la ventana tiene la renderización habilitada
+    DwmGetWindowAttribute(hWnd_ex, DWMWA_NCRENDERING_ENABLED, &isEnabled, sizeof(isEnabled));
+    if(isEnabled == FALSE) {
+        return TRUE;
+    }
+
     DWORD pid;
     GetWindowThreadProcessId(hWnd_ex, &pid);
 
@@ -100,7 +112,7 @@ BOOL IsExcludeHWND(HWND hWnd_ex)
 
     // Verificar si el proceso de la ventana está en la lista de exclusión
     while (*pBuffer) {
-        DWORD pid_ex = GetPID(pBuffer);
+        DWORD pid_ex = GetPID(pBuffer); // Aquí deberías llamar a tu función GetPID
         if (pid == pid_ex) {
             return TRUE;
         }
@@ -111,24 +123,26 @@ BOOL IsExcludeHWND(HWND hWnd_ex)
 }
 
 BOOL CALLBACK PolWinProc(HWND hwnd, LPARAM lParam) {
-    _PoL(hwnd, "Disable");
+    _NCRP(hwnd, "Disable");
+    _ATTRIBS_OFF(hwnd);
 
         // Comprobar si la ventana es de un proceso excluido
         if (IsExcludeHWND(hwnd))
         {
-            _PoL(hwnd, "Enable");
+            _NCRP(hwnd, "Enable");
         }
     return TRUE;
 }
 
 BOOL CALLBACK dPolWinProc(HWND hwnd, LPARAM lParam) {
-    _PoL(hwnd, "Enable");
+    _NCRP(hwnd, "Enable");
+    _ATTRIBS_ON(hwnd);
     return TRUE;
 }
 
 void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime)
 {
-    if (event == EVENT_SYSTEM_FOREGROUND && hwnd != HWNDPrev && hwnd != NULL)
+    if (event == EVENT_SYSTEM_FOREGROUND && hwnd != HWNDPrev)
     {
             // Comprobar si la ventana actual es de un proceso excluido
             if (IsExcludeHWND(hwnd))
@@ -137,8 +151,8 @@ void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, 
             }
 
         // Deshabilitar la política en la ventana anterior
-            _PoL(hwnd, "Disable");
-            _DisableBlurBehind(hwnd);
+            _NCRP(hwnd, "Disable");
+            _ATTRIBS_OFF(hwnd);
 
         // Actualizar HWNDPrev con el valor de la ventana actual
         HWNDPrev = hwnd;
