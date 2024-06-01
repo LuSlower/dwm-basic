@@ -81,18 +81,14 @@ void _ATTRIBS_OFF(HWND hwnd)
 {
         //politica de transisiones, icon_peek,
         tPol = TRUE;
-        tPeek = FALSE;
         DwmSetWindowAttribute(hwnd, DWMWA_TRANSITIONS_FORCEDISABLED, &tPol, sizeof(tPol));
-        DwmSetWindowAttribute(hwnd, DWMWA_DISALLOW_PEEK, &tPeek, sizeof(tPeek));
         DwmSetWindowAttribute(hwnd, DWMWA_FORCE_ICONIC_REPRESENTATION, &tPol, sizeof(tPol));
 }
 
 void _ATTRIBS_ON(HWND hwnd)
 {
         tPol = FALSE;
-        tPeek = TRUE;
         DwmSetWindowAttribute(hwnd, DWMWA_TRANSITIONS_FORCEDISABLED, &tPol, sizeof(tPol));
-        DwmSetWindowAttribute(hwnd, DWMWA_DISALLOW_PEEK, &tPeek, sizeof(tPeek));
         DwmSetWindowAttribute(hwnd, DWMWA_FORCE_ICONIC_REPRESENTATION, &tPol, sizeof(tPol));
 }
 
