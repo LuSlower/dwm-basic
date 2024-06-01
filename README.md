@@ -16,7 +16,7 @@ el basic themer más ligero y completo
 
 > DWMWA_TRANSITIONS_FORCEDISABLED
 
-tambien deshabilita DWM Blur Behind...
+también fuerza a deshabilitar el Peek a través de `DWMWA_DISALLOW_PEEK` y `DWMWA_FORCE_ICONIC_REPRESENTATION`
 
 * si no desea usar el SysMenu de su navegador basado en Chromiun agreguelo a `ExclusionList` y/o use este [tema](https://chromewebstore.google.com/detail/windows-vista-basic-theme/bkohfcingfpclphbaglfbbjbfajcepad)  necesita inicializar el programa con **-disable-windows10-custom-titlebar** para eso mejor cree un acceso directo
 
