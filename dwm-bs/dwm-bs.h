@@ -144,15 +144,17 @@ void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, 
 {
     if (event == EVENT_SYSTEM_FOREGROUND && hwnd != HWNDPrev)
     {
+            // deshabilitar otros atributos
+            _ATTRIBS_OFF(hwnd);
+        
             // Comprobar si la ventana actual es de un proceso excluido
             if (IsExcludeHWND(hwnd))
             {
                 return;
             }
 
-        // Deshabilitar la política en la ventana anterior
+        // deshabilitar politica de renderizado
             _NCRP(hwnd, "Disable");
-            _ATTRIBS_OFF(hwnd);
 
         // Actualizar HWNDPrev con el valor de la ventana actual
         HWNDPrev = hwnd;
