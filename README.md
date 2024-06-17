@@ -20,4 +20,4 @@ el basic themer más ligero y completo
 
 * si no desea usar el SysMenu de su navegador basado en Chromiun agreguelo a `ExclusionList` y/o use este [tema](https://chromewebstore.google.com/detail/windows-vista-basic-theme/bkohfcingfpclphbaglfbbjbfajcepad)  necesita inicializar el programa con **-disable-windows10-custom-titlebar** para eso mejor cree un acceso directo
 
-* posee un hotkey CTRL + SHIFT + F1 para restaurar todo a la normalidad
+* CTRL + SHIFT + F1 para restaurar todo a la normalidad
