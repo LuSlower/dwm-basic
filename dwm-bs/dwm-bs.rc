@@ -9,11 +9,9 @@ BEGIN
             VALUE "CompanyName", "LuSlower Software"
             VALUE "FileDescription", "dwm-bs"
             VALUE "FileVersion", "0.0.0.0"
-            VALUE "InternalName", "dwm-bs"
             VALUE "LegalCopyright", "Copyright © LuSlower"
-            VALUE "OriginalFilename", "dwm-bs.exe"
-            VALUE "ProductName", "dwm-bs"
             VALUE "ProductVersion", "0.0.0.0"
+            VALUE "ProductName", "dwm-bs"
         }
     }
     BLOCK "VarFileInfo"

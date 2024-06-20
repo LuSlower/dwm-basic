@@ -13,7 +13,7 @@ BOOL tPol, tPeek, isEnabled;
 DWORD GetPID(const char* processName) {
     HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     if (snapshot == INVALID_HANDLE_VALUE) {
-        printf("Error al crear un snapshot de procesos");
+        printf("Error creating a process snapshot.\n");
         return 0;
     }
 
@@ -21,7 +21,7 @@ DWORD GetPID(const char* processName) {
     entry.dwSize = sizeof(PROCESSENTRY32);
     if (!Process32First(snapshot, &entry)) {
         CloseHandle(snapshot);
-        printf("Error al obtener la primera entrada de proceso");
+        printf("Error getting first process entry.\n");
         return 0;
     }
 
@@ -39,7 +39,7 @@ DWORD GetPID(const char* processName) {
 
 const char* GetExcludeList()
 {
-    static char pBuffer[64];  // Usamos static para que la variable persista fuera del alcance de la funci√≥n
+    static char pBuffer[64];  // Usamos static para que la variable persista fuera del alcance de la funciÛn
     DWORD pSize = sizeof(pBuffer);
 
     // Leer la lista de procesos excluidos
@@ -95,7 +95,7 @@ void _ATTRIBS_ON(HWND hwnd)
 BOOL IsExcludeHWND(HWND hWnd_ex)
 {
 
-    // Verificar si la ventana tiene la renderizaci√≥n habilitada
+    // Verificar si la ventana tiene la renderizaciÛn habilitada
     DwmGetWindowAttribute(hWnd_ex, DWMWA_NCRENDERING_ENABLED, &isEnabled, sizeof(isEnabled));
     if(isEnabled == FALSE) {
         return TRUE;
@@ -106,9 +106,9 @@ BOOL IsExcludeHWND(HWND hWnd_ex)
 
     const char* pBuffer = GetExcludeList();
 
-    // Verificar si el proceso de la ventana est√° en la lista de exclusi√≥n
+    // Verificar si el proceso de la ventana est· en la lista de exclusiÛn
     while (*pBuffer) {
-        DWORD pid_ex = GetPID(pBuffer); // Aqu√≠ deber√≠as llamar a tu funci√≥n GetPID
+        DWORD pid_ex = GetPID(pBuffer); // AquÌ deberÌas llamar a tu funciÛn GetPID
         if (pid == pid_ex) {
             return TRUE;
         }
@@ -142,7 +142,7 @@ void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, 
     {
             // deshabilitar otros atributos
             _ATTRIBS_OFF(hwnd);
-        
+
             // Comprobar si la ventana actual es de un proceso excluido
             if (IsExcludeHWND(hwnd))
             {
