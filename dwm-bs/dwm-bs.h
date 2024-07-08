@@ -39,7 +39,7 @@ DWORD GetPID(const char* processName) {
 
 const char* GetExcludeList()
 {
-    static char pBuffer[64];  // Usamos static para que la variable persista fuera del alcance de la función
+    static char pBuffer[1024];  // Usamos static para que la variable persista fuera del alcance de la función
     DWORD pSize = sizeof(pBuffer);
 
     // Leer la lista de procesos excluidos
