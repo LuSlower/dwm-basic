@@ -22,5 +22,5 @@ el basic themer más ligero y completo
 
 * CTRL + SHIFT + F1 para restaurar todo a la normalidad
 
-Esta herramienta se basa en [código abierto](https://github.com/spddl/disableDWMactivitys)
+Esta herramienta se basa en código abierto [1](https://github.com/spddl/disableDWMactivitys)
 
