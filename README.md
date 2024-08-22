@@ -20,6 +20,8 @@ The lightest and most complete basic themer
 
 * if you don't want to use the SysMenu of your Chromium-based browser add it to `ExclusionList` and/or use this [tema](https://chromewebstore.google.com/detail/windows-vista-basic-theme/bkohfcingfpclphbaglfbbjbfajcepad) you need to initialize the program with **-disable-windows10-custom-titlebar** for that better create a shortcut
 
+* You can specify the -m argument if you want to enable DwmEnableMMCSS, the function will be called every time a window is in the foreground
+
 * CTRL + SHIFT + F1 to restore everything to normal
 
 # REF
