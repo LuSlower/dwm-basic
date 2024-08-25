@@ -7,7 +7,7 @@
 
 HWND HWNDPrev = NULL;
 HWINEVENTHOOK hHook;
-BOOL tPol, tPeek, isEnabled;
+BOOL tPol, tPeek, isEnabled, fEnableMMCSS = FALSE;
 
 
 DWORD GetPID(const char* processName) {
@@ -147,6 +147,8 @@ void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, 
             if (IsExcludeHWND(hwnd))
             {
                 return;
+            } else if (fEnableMMCSS) {
+                DwmEnableMMCSS(fEnableMMCSS);
             }
 
         // deshabilitar politica de renderizado

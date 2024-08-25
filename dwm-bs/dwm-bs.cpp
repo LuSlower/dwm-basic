@@ -1,7 +1,10 @@
 #include "dwm-bs.h"
 
-int main()
+int main(int argc, char *argv[])
 {
+    if (argc == 2 && strcmp(argv[1],"-m") == 0 ){
+        fEnableMMCSS = TRUE;
+    }
 
     FreeConsole();
 
@@ -36,6 +39,8 @@ int main()
 
                             // remover atajo
                             UnregisterHotKey(NULL, HK_ID);
+
+                            DwmEnableMMCSS(FALSE);
 
                             return 0;
                         }
