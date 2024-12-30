@@ -1,7 +1,7 @@
 # dwm-basic
 The lightest and most complete basic themer
 
-[![Total Downloads](https://img.shields.io/github/downloads/LuSlower/dwmbsc/total.svg)](https://github.com/LuSlower/dwmbsc/releases) [![PayPal Badge](https://img.shields.io/badge/PayPal-003087?logo=paypal&logoColor=fff&style=flat)](https://paypal.me/eldontweaks) 
+[![Total Downloads](https://img.shields.io/github/downloads/LuSlower/dwmbsc/total.svg)](https://github.com/LuSlower/dwmbsc/releases)
 
 ![image](https://github.com/LuSlower/dwm-basic/assets/148411728/d6fdea55-0a61-4ce5-94ac-743483fe5e80)
 
