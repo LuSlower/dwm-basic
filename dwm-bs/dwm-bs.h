@@ -39,16 +39,14 @@ DWORD GetPID(const char* processName) {
 
 const char* GetExcludeList()
 {
-    static char pBuffer[1024];  // Usamos static para que la variable persista fuera del alcance de la función
+    static char pBuffer[1024];
     DWORD pSize = sizeof(pBuffer);
 
-    // Leer la lista de procesos excluidos
     HKEY hKey;
     const char* lpSubKey = "Software\\dwm-bs";
     DWORD valueType = REG_MULTI_SZ;
 
     if (RegOpenKeyEx(HKEY_CURRENT_USER, lpSubKey, 0, KEY_READ, &hKey) != ERROR_SUCCESS) {
-        // Crear la clave por si no existe
         RegCreateKeyEx(HKEY_CURRENT_USER, lpSubKey, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_READ | KEY_WRITE, NULL, &hKey, NULL);
     }
 
@@ -58,7 +56,6 @@ const char* GetExcludeList()
         RegSetValueExA(hKey, "ExclusionList", 0, REG_MULTI_SZ, (const BYTE*)initialValue, strlen(initialValue));
     }
 
-    // Cerrar la clave
     RegCloseKey(hKey);
 
     return pBuffer;
@@ -66,7 +63,6 @@ const char* GetExcludeList()
 
 void _NCRP(HWND hwnd, const char* Option)
 {
-        //politica de renderizado
     if (strcmp(Option, "Enable") == 0) {
         DWMNCRENDERINGPOLICY rNCRP = DWMNCRP_ENABLED;
         DwmSetWindowAttribute(hwnd, DWMWA_NCRENDERING_POLICY, &rNCRP, sizeof(rNCRP));
@@ -79,7 +75,6 @@ void _NCRP(HWND hwnd, const char* Option)
 
 void _ATTRIBS_OFF(HWND hwnd)
 {
-        //politica de transisiones, icon_peek,
         tPol = TRUE;
         DwmSetWindowAttribute(hwnd, DWMWA_TRANSITIONS_FORCEDISABLED, &tPol, sizeof(tPol));
         DwmSetWindowAttribute(hwnd, DWMWA_FORCE_ICONIC_REPRESENTATION, &tPol, sizeof(tPol));
@@ -95,7 +90,6 @@ void _ATTRIBS_ON(HWND hwnd)
 BOOL IsExcludeHWND(HWND hWnd_ex)
 {
 
-    // Verificar si la ventana tiene la renderización habilitada
     DwmGetWindowAttribute(hWnd_ex, DWMWA_NCRENDERING_ENABLED, &isEnabled, sizeof(isEnabled));
     if(isEnabled == FALSE) {
         return TRUE;
@@ -106,9 +100,8 @@ BOOL IsExcludeHWND(HWND hWnd_ex)
 
     const char* pBuffer = GetExcludeList();
 
-    // Verificar si el proceso de la ventana está en la lista de exclusión
     while (*pBuffer) {
-        DWORD pid_ex = GetPID(pBuffer); // Aquí deberías llamar a tu función GetPID
+        DWORD pid_ex = GetPID(pBuffer);
         if (pid == pid_ex) {
             return TRUE;
         }
@@ -122,7 +115,6 @@ BOOL CALLBACK PolWinProc(HWND hwnd, LPARAM lParam) {
     _NCRP(hwnd, "Disable");
     _ATTRIBS_OFF(hwnd);
 
-        // Comprobar si la ventana es de un proceso excluido
         if (IsExcludeHWND(hwnd))
         {
             _NCRP(hwnd, "Enable");
@@ -140,10 +132,8 @@ void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, 
 {
     if (event == EVENT_SYSTEM_FOREGROUND && hwnd != HWNDPrev)
     {
-            // deshabilitar otros atributos
             _ATTRIBS_OFF(hwnd);
 
-            // Comprobar si la ventana actual es de un proceso excluido
             if (IsExcludeHWND(hwnd))
             {
                 return;
@@ -151,10 +141,8 @@ void CALLBACK WinEventProc(HWINEVENTHOOK hWinEventHook, DWORD event, HWND hwnd, 
                 DwmEnableMMCSS(fEnableMMCSS);
             }
 
-        // deshabilitar politica de renderizado
             _NCRP(hwnd, "Disable");
 
-        // Actualizar HWNDPrev con el valor de la ventana actual
         HWNDPrev = hwnd;
     }
     else
